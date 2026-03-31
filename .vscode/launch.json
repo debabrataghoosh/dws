@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Drowsiness Detector",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/drowsiness_detector.py",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
