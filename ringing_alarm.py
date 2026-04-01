@@ -4,7 +4,8 @@
 # In[ ]:
 
 
-import pygame
+import platform
+import subprocess
 
 def select_alarm(result) :
     if result == 0:
@@ -15,8 +16,23 @@ def select_alarm(result) :
         sound_alarm("short_alarm.mp3")
 
 def sound_alarm(path) :
-    pygame.mixer.init()
-    pygame.mixer.music.load(path)
-    pygame.mixer.music.play()
+    try:
+        import pygame
+
+        pygame.mixer.init()
+        pygame.mixer.music.load(path)
+        pygame.mixer.music.play()
+        return
+    except Exception:
+        pass
+
+    # Fallback for environments where pygame is not installed.
+    if platform.system() == "Darwin":
+        try:
+            subprocess.Popen(["afplay", "/System/Library/Sounds/Glass.aiff"])
+        except Exception:
+            pass
+    else:
+        print("Alarm:", path)
     
 
